@@ -131,3 +131,10 @@ data-engineering-lab/
 Made for learning and portfolio demonstration by **Nazir Ali Khan**.
 
 </div>
+
+
+## Project 02 — HTTP Log Analytics & Monitoring Engine
+
+A dependency-free Python/SQLite log ingestion, validation, and operational metrics project with idempotent loads, rejected-row auditing, p95 latency, and automated tests.
+
+➡️ [See Project 02](projects/02-log-analytics/README.md)
