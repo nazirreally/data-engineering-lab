@@ -71,7 +71,7 @@ function drawBars(rows,nodeId,kind) {
  } else if(kind==='annual'){
    const d=annualVolume(rows);values=d.map(x=>x.volume);labels=d.map(x=>x.year);colors=d.map(()=>'#83afea');
  } else {
-   const returns=rows.map(r=>r.ret).filter(Number.isFinite);if(!returns.length){el.innerHTML='<div class="chart-empty">Not enough trading records.</div>';return;}
+   const returns=rows.slice(1).map((r,i)=>(r.price??r.close)/(rows[i].price??rows[i].close)-1).filter(Number.isFinite);if(!returns.length){el.innerHTML='<div class="chart-empty">Not enough trading records.</div>';return;}
    const min=Math.min(...returns),max=Math.max(...returns),span=max-min||1,n=21;
    values=Array(n).fill(0);labels=values.map((_,i)=>((min+(i+.5)*span/n)*100).toFixed(1)+'%');
    colors=values.map((_,i)=>(min+(i+.5)*span/n)<0?'#f4adb6':'#85b5ef');
