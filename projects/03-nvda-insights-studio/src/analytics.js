@@ -32,7 +32,7 @@ export function parseCSV(text) {
     const cells = lines[n];
     const date = String(cells[positions.date] || '').trim().slice(0, 10);
     if (!/^\d{4}-\d{2}-\d{2}$/.test(date) || !Number.isFinite(Date.parse(date + 'T00:00:00Z')) || new Date(date+'T00:00:00Z').toISOString().slice(0,10)!==date) { issues.badDate++; continue; }
-    const numeric = key => Number(String(cells[positions[key]] ?? '').replace(/,/g, '').trim());
+    const numeric = key => { const value=String(cells[positions[key]] ?? '').replace(/,/g, '').trim(); return value==='' ? NaN : Number(value); };
     const open = numeric('open'), high = numeric('high'), low = numeric('low'), close = numeric('close'), volume = numeric('volume');
     if (![open,high,low,close].every(v => Number.isFinite(v) && v > 0)) { issues.badPrice++; continue; }
     if (high < Math.max(open,close) * 0.999999 || low > Math.min(open,close) * 1.000001 || low > high) { issues.badRange++; continue; }
@@ -79,7 +79,7 @@ export function selectPeriod(rows,code) {
 export function summary(rows) {
   if(!rows.length) return null;
   const first=rows[0],last=rows[rows.length-1], start=first.price ?? first.close, end=last.price??last.close;
-  const returns=rows.map(r=>r.ret).filter(x=>Number.isFinite(x));
+  const returns=rows.slice(1).map((r,i)=>(r.price??r.close)/(rows[i].price??rows[i].close)-1).filter(Number.isFinite);
   const avg=returns.length?returns.reduce((a,b)=>a+b,0)/returns.length:0;
   const variance=returns.length>1?returns.reduce((a,b)=>a+(b-avg)**2,0)/(returns.length-1):0;
   const highs=rows.map(r=>r.high), lows=rows.map(r=>r.low);
