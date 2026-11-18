@@ -138,3 +138,11 @@ Made for learning and portfolio demonstration by **Nazir Ali Khan**.
 A dependency-free Python/SQLite log ingestion, validation, and operational metrics project with idempotent loads, rejected-row auditing, p95 latency, and automated tests.
 
 ➡️ [See Project 02](projects/02-log-analytics/README.md)
+
+## Project 03 — NVDA Insights Studio 📈
+
+A **Nexora-inspired, fully interactive stock analytics dashboard** with a white-and-blue UI, real (attributed) NVIDIA historical demo prices, local CSV import for the [requested Kaggle dataset](https://www.kaggle.com/datasets/caesarmario/nvidia-stock-historical-price), price/volume charts, returns, volatility, drawdown, data-quality checks, and downloadable Markdown/JSON/CSV reports.
+
+**Stack:** Vanilla JavaScript, SVG, HTML, CSS, Node tests and GitHub Actions. No external runtime dependencies. The bundled demo is historical through November 2024, **not live market data and not the Kaggle file**.
+
+➡️ [Open Project 03 — NVDA Insights Studio](projects/03-nvda-insights-studio/README.md) · [Browse dashboard source](projects/03-nvda-insights-studio/index.html)
