@@ -33,7 +33,7 @@ class ETLReport:
 
     @property
     def revenue_dollars(self) -> str:
-        return f"{self.revenue_cents / 100:,.2f}"
+        return f"{Decimal(self.revenue_cents) / Decimal(100):,.2f}"
 
 
 def _required(row: dict, key: str) -> str:
