@@ -1,0 +1,21 @@
+name: NVDA Insights Studio checks
+on:
+  push:
+    paths:
+      - 'projects/03-nvda-insights-studio/**'
+      - '.github/workflows/nvda-insights.yml'
+  pull_request:
+    paths:
+      - 'projects/03-nvda-insights-studio/**'
+      - '.github/workflows/nvda-insights.yml'
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run unit tests
+        working-directory: projects/03-nvda-insights-studio
+        run: node --test tests/analytics.test.js
